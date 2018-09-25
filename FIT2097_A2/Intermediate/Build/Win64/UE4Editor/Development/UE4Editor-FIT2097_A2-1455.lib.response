@@ -1,0 +1,18 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-FIT2097_A2-1455.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2GameMode.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2Character.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2Character.gen.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2GameMode.gen.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2.init.gen.cpp.obj"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\PCLaunch.rc.res"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+/OUT:"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-FIT2097_A2-1455.lib"

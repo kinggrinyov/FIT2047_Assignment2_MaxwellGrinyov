@@ -1,0 +1,70 @@
+/MANIFEST:NO
+/NOLOGO
+/DEBUG
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/FIXED:No
+/NXCOMPAT
+/STACK:5000000
+/DELAY:UNLOAD
+/DLL
+/PDBALTPATH:%_PDB%
+/OPT:NOREF
+/OPT:NOICF
+/INCREMENTAL:NO
+/ignore:4199
+/ignore:4099
+/DELAYLOAD:"d3d12.dll"
+/NODEFAULTLIB:"LIBCMT"
+/NODEFAULTLIB:"LIBCPMT"
+/NODEFAULTLIB:"LIBCMTD"
+/NODEFAULTLIB:"LIBCPMTD"
+/NODEFAULTLIB:"MSVCRTD"
+/NODEFAULTLIB:"MSVCPRTD"
+/NODEFAULTLIB:"LIBC"
+/NODEFAULTLIB:"LIBCP"
+/NODEFAULTLIB:"LIBCD"
+/NODEFAULTLIB:"LIBCPD"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2GameMode.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2Character.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2Character.gen.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2GameMode.gen.cpp.obj"
+"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\FIT2097_A2.init.gen.cpp.obj"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\FIT2097_A2\PCLaunch.rc.res"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+"delayimp.lib"
+"wininet.lib"
+"rpcrt4.lib"
+"ws2_32.lib"
+"dbghelp.lib"
+"comctl32.lib"
+"Winmm.lib"
+"kernel32.lib"
+"user32.lib"
+"gdi32.lib"
+"winspool.lib"
+"comdlg32.lib"
+"advapi32.lib"
+"shell32.lib"
+"ole32.lib"
+"oleaut32.lib"
+"uuid.lib"
+"odbc32.lib"
+"odbccp32.lib"
+"netapi32.lib"
+"iphlpapi.lib"
+"setupapi.lib"
+"dwmapi.lib"
+"imm32.lib"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Core.lib"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-CoreUObject.lib"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Engine.lib"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-InputCore.lib"
+"X:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-HeadMountedDisplay.lib"
+/OUT:"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Binaries\Win64\UE4Editor-FIT2097_A2-1455.dll"
+/IMPLIB:"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-FIT2097_A2-1455.suppressed.lib"
+/PDB:"E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Binaries\Win64\UE4Editor-FIT2097_A2-1455.pdb"
+/ignore:4078
