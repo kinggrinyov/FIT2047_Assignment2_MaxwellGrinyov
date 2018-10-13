@@ -17,11 +17,61 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 	FIT2097_A2_API UClass* Z_Construct_UClass_AFIT2097_A2Character();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_FIT2097_A2();
+	FIT2097_A2_API UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_SpawnExplosion();
+	FIT2097_A2_API UFunction* Z_Construct_UFunction_AFIT2097_A2Character_SERVER_SpawnExplosion();
+	ENGINE_API UClass* Z_Construct_UClass_UTextRenderComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 // End Cross Module References
+	static FName NAME_AFIT2097_A2Character_CLIENT_SpawnExplosion = FName(TEXT("CLIENT_SpawnExplosion"));
+	void AFIT2097_A2Character::CLIENT_SpawnExplosion()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_AFIT2097_A2Character_CLIENT_SpawnExplosion),NULL);
+	}
+	static FName NAME_AFIT2097_A2Character_SERVER_SpawnExplosion = FName(TEXT("SERVER_SpawnExplosion"));
+	void AFIT2097_A2Character::SERVER_SpawnExplosion()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_AFIT2097_A2Character_SERVER_SpawnExplosion),NULL);
+	}
 	void AFIT2097_A2Character::StaticRegisterNativesAFIT2097_A2Character()
 	{
+		UClass* Class = AFIT2097_A2Character::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "CLIENT_SpawnExplosion", &AFIT2097_A2Character::execCLIENT_SpawnExplosion },
+			{ "SERVER_SpawnExplosion", &AFIT2097_A2Character::execSERVER_SpawnExplosion },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_SpawnExplosion()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
+			};
+#endif
+			static const UE4CodeGen_Private::FFunctionParams FuncParams = { (UObject*(*)())Z_Construct_UClass_AFIT2097_A2Character, "CLIENT_SpawnExplosion", RF_Public|RF_Transient|RF_MarkAsNative, nullptr, (EFunctionFlags)0x80220CC0, 0, nullptr, 0, 0, 0, METADATA_PARAMS(Function_MetaDataParams, ARRAY_COUNT(Function_MetaDataParams)) };
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, FuncParams);
+		}
+		return ReturnFunction;
+	}
+	UFunction* Z_Construct_UFunction_AFIT2097_A2Character_SERVER_SpawnExplosion()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
+			};
+#endif
+			static const UE4CodeGen_Private::FFunctionParams FuncParams = { (UObject*(*)())Z_Construct_UClass_AFIT2097_A2Character, "SERVER_SpawnExplosion", RF_Public|RF_Transient|RF_MarkAsNative, nullptr, (EFunctionFlags)0x00024CC0, 0, nullptr, 0, 0, 0, METADATA_PARAMS(Function_MetaDataParams, ARRAY_COUNT(Function_MetaDataParams)) };
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_AFIT2097_A2Character_NoRegister()
 	{
@@ -36,6 +86,10 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 				(UObject* (*)())Z_Construct_UClass_ACharacter,
 				(UObject* (*)())Z_Construct_UPackage__Script_FIT2097_A2,
 			};
+			static const FClassFunctionLinkInfo FuncInfo[] = {
+				{ &Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_SpawnExplosion, "CLIENT_SpawnExplosion" }, // 685130675
+				{ &Z_Construct_UFunction_AFIT2097_A2Character_SERVER_SpawnExplosion, "SERVER_SpawnExplosion" }, // 1700971722
+			};
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 				{ "HideCategories", "Navigation" },
@@ -43,6 +97,22 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
 			};
 #endif
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoleText_MetaData[] = {
+				{ "Category", "VFX" },
+				{ "EditInline", "true" },
+				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
+			};
+#endif
+			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_RoleText = { UE4CodeGen_Private::EPropertyClass::Object, "RoleText", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000080009, 1, nullptr, STRUCT_OFFSET(AFIT2097_A2Character, RoleText), Z_Construct_UClass_UTextRenderComponent_NoRegister, METADATA_PARAMS(NewProp_RoleText_MetaData, ARRAY_COUNT(NewProp_RoleText_MetaData)) };
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ExplosionEffect_MetaData[] = {
+				{ "Category", "VFX" },
+				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
+				{ "ToolTip", "MyStuff" },
+			};
+#endif
+			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ExplosionEffect = { UE4CodeGen_Private::EPropertyClass::Object, "ExplosionEffect", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000001, 1, nullptr, STRUCT_OFFSET(AFIT2097_A2Character, ExplosionEffect), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(NewProp_ExplosionEffect_MetaData, ARRAY_COUNT(NewProp_ExplosionEffect_MetaData)) };
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BaseLookUpRate_MetaData[] = {
 				{ "Category", "Camera" },
@@ -80,6 +150,8 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 #endif
 			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CameraBoom = { UE4CodeGen_Private::EPropertyClass::Object, "CameraBoom", RF_Public|RF_Transient|RF_MarkAsNative, 0x00400000000a001d, 1, nullptr, STRUCT_OFFSET(AFIT2097_A2Character, CameraBoom), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(NewProp_CameraBoom_MetaData, ARRAY_COUNT(NewProp_CameraBoom_MetaData)) };
 			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_RoleText,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_ExplosionEffect,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BaseLookUpRate,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BaseTurnRate,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_FollowCamera,
@@ -92,7 +164,7 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 				&AFIT2097_A2Character::StaticClass,
 				DependentSingletons, ARRAY_COUNT(DependentSingletons),
 				0x00800080u,
-				nullptr, 0,
+				FuncInfo, ARRAY_COUNT(FuncInfo),
 				PropPointers, ARRAY_COUNT(PropPointers),
 				"Game",
 				&StaticCppClassTypeInfo,
@@ -103,7 +175,7 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AFIT2097_A2Character, 1217865932);
+	IMPLEMENT_CLASS(AFIT2097_A2Character, 4113287256);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AFIT2097_A2Character(Z_Construct_UClass_AFIT2097_A2Character, &AFIT2097_A2Character::StaticClass, TEXT("/Script/FIT2097_A2"), TEXT("AFIT2097_A2Character"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AFIT2097_A2Character);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

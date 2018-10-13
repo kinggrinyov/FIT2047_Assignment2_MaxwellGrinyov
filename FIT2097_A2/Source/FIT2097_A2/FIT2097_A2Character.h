@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Engine.h"
 #include "FIT2097_A2Character.generated.h"
 
 UCLASS(config=Game)
@@ -36,10 +37,40 @@ public:
 		return true;
 	}
 
-protected:
+	//MyStuff
+	UPROPERTY(EditAnywhere, Category = "VFX")
+		UParticleSystem* ExplosionEffect;
 
-	/** Resets HMD orientation in VR. */
-	void OnResetVR();
+	UFUNCTION(NetMulticast, Reliable)
+		void SERVER_SpawnExplosion();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+		void CLIENT_SpawnExplosion();
+
+	UPROPERTY(EditAnywhere, Category = "VFX")
+		UTextRenderComponent* RoleText;
+
+	void SetupDisplayRole();
+
+	void BeginPlay() override;
+
+	void Jump();
+
+	//Trace Code
+	bool Trace(
+		UWorld* World,
+		TArray<AActor*>& ActorsToIgnore,
+		const FVector& Start,
+		const FVector& End,
+		FHitResult& HitOut,
+		ECollisionChannel CollisionChannel,
+		bool ReturnPhysMat
+	);
+
+	void CallMyTrace();
+	void ProcessTraceHit(FHitResult& HitOut);
+
+protected:
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
@@ -58,12 +89,6 @@ protected:
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
 	void LookUpAtRate(float Rate);
-
-	/** Handler for when a touch input begins. */
-	void TouchStarted(ETouchIndex::Type FingerIndex, FVector Location);
-
-	/** Handler for when a touch input stops. */
-	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
 protected:
 	// APawn interface

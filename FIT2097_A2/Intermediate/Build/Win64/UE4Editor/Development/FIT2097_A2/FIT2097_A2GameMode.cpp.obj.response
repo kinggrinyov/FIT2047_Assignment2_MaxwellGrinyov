@@ -25,6 +25,7 @@
 /w44668
 /I "X:\Program Files\Epic Games\UE_4.19\Engine\Source"
 /I "E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Source"
+/I "E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Source\FIT2097_A2\Public"
 /I "E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Intermediate\Build\Win64\UE4Editor\Inc\FIT2097_A2"
 /I "E:\Uni\Semester 2\FIT2097\Assignment2\FIT2047_Assignment2_MaxwellGrinyov\FIT2097_A2\Source\FIT2097_A2"
 /I "X:\Program Files\Epic Games\UE_4.19\Engine\Source\Runtime\Core\Public"

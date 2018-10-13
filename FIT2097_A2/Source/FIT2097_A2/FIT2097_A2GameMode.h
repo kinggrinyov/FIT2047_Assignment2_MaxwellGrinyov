@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Classes/Components/TextRenderComponent.h"
 #include "FIT2097_A2GameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -13,6 +14,9 @@ class AFIT2097_A2GameMode : public AGameModeBase
 
 public:
 	AFIT2097_A2GameMode();
+
+	//This stores the doors that are unlocked
+	bool DoorsUnlocked[4];
 };
 
 
