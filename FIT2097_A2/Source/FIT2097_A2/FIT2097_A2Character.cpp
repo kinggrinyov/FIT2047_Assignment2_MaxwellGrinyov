@@ -353,7 +353,10 @@ void AFIT2097_A2Character::SetupDisplayRole()
 
 void AFIT2097_A2Character::UpdateDisplayRole()
 {
-	RoleText->SetWorldRotation(FRotator::MakeFromEuler(FVector::ZeroVector));
+	if(RoleText)
+	{
+		RoleText->SetWorldRotation(FRotator::MakeFromEuler(FVector::ZeroVector));
+	}	
 }
 
 
