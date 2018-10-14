@@ -17,13 +17,30 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 	FIT2097_A2_API UClass* Z_Construct_UClass_AFIT2097_A2Character();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_FIT2097_A2();
+	FIT2097_A2_API UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_PickupKey();
+	FIT2097_A2_API UClass* Z_Construct_UClass_AInteractableKey_NoRegister();
+	FIT2097_A2_API UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_RequestOpenDoor();
+	FIT2097_A2_API UClass* Z_Construct_UClass_ADoor_NoRegister();
 	FIT2097_A2_API UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_SpawnExplosion();
 	FIT2097_A2_API UFunction* Z_Construct_UFunction_AFIT2097_A2Character_SERVER_SpawnExplosion();
-	ENGINE_API UClass* Z_Construct_UClass_UTextRenderComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 // End Cross Module References
+	static FName NAME_AFIT2097_A2Character_CLIENT_PickupKey = FName(TEXT("CLIENT_PickupKey"));
+	void AFIT2097_A2Character::CLIENT_PickupKey(AInteractableKey* keyToPickup)
+	{
+		FIT2097_A2Character_eventCLIENT_PickupKey_Parms Parms;
+		Parms.keyToPickup=keyToPickup;
+		ProcessEvent(FindFunctionChecked(NAME_AFIT2097_A2Character_CLIENT_PickupKey),&Parms);
+	}
+	static FName NAME_AFIT2097_A2Character_CLIENT_RequestOpenDoor = FName(TEXT("CLIENT_RequestOpenDoor"));
+	void AFIT2097_A2Character::CLIENT_RequestOpenDoor(ADoor* doorToOpen)
+	{
+		FIT2097_A2Character_eventCLIENT_RequestOpenDoor_Parms Parms;
+		Parms.doorToOpen=doorToOpen;
+		ProcessEvent(FindFunctionChecked(NAME_AFIT2097_A2Character_CLIENT_RequestOpenDoor),&Parms);
+	}
 	static FName NAME_AFIT2097_A2Character_CLIENT_SpawnExplosion = FName(TEXT("CLIENT_SpawnExplosion"));
 	void AFIT2097_A2Character::CLIENT_SpawnExplosion()
 	{
@@ -38,10 +55,50 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 	{
 		UClass* Class = AFIT2097_A2Character::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "CLIENT_PickupKey", &AFIT2097_A2Character::execCLIENT_PickupKey },
+			{ "CLIENT_RequestOpenDoor", &AFIT2097_A2Character::execCLIENT_RequestOpenDoor },
 			{ "CLIENT_SpawnExplosion", &AFIT2097_A2Character::execCLIENT_SpawnExplosion },
 			{ "SERVER_SpawnExplosion", &AFIT2097_A2Character::execSERVER_SpawnExplosion },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_PickupKey()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_keyToPickup = { UE4CodeGen_Private::EPropertyClass::Object, "keyToPickup", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000080, 1, nullptr, STRUCT_OFFSET(FIT2097_A2Character_eventCLIENT_PickupKey_Parms, keyToPickup), Z_Construct_UClass_AInteractableKey_NoRegister, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_keyToPickup,
+			};
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
+			};
+#endif
+			static const UE4CodeGen_Private::FFunctionParams FuncParams = { (UObject*(*)())Z_Construct_UClass_AFIT2097_A2Character, "CLIENT_PickupKey", RF_Public|RF_Transient|RF_MarkAsNative, nullptr, (EFunctionFlags)0x80220CC0, sizeof(FIT2097_A2Character_eventCLIENT_PickupKey_Parms), PropPointers, ARRAY_COUNT(PropPointers), 0, 0, METADATA_PARAMS(Function_MetaDataParams, ARRAY_COUNT(Function_MetaDataParams)) };
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, FuncParams);
+		}
+		return ReturnFunction;
+	}
+	UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_RequestOpenDoor()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_doorToOpen = { UE4CodeGen_Private::EPropertyClass::Object, "doorToOpen", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000080, 1, nullptr, STRUCT_OFFSET(FIT2097_A2Character_eventCLIENT_RequestOpenDoor_Parms, doorToOpen), Z_Construct_UClass_ADoor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_doorToOpen,
+			};
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
+			};
+#endif
+			static const UE4CodeGen_Private::FFunctionParams FuncParams = { (UObject*(*)())Z_Construct_UClass_AFIT2097_A2Character, "CLIENT_RequestOpenDoor", RF_Public|RF_Transient|RF_MarkAsNative, nullptr, (EFunctionFlags)0x80220CC0, sizeof(FIT2097_A2Character_eventCLIENT_RequestOpenDoor_Parms), PropPointers, ARRAY_COUNT(PropPointers), 0, 0, METADATA_PARAMS(Function_MetaDataParams, ARRAY_COUNT(Function_MetaDataParams)) };
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UFunction* Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_SpawnExplosion()
 	{
@@ -87,6 +144,8 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 				(UObject* (*)())Z_Construct_UPackage__Script_FIT2097_A2,
 			};
 			static const FClassFunctionLinkInfo FuncInfo[] = {
+				{ &Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_PickupKey, "CLIENT_PickupKey" }, // 2097115308
+				{ &Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_RequestOpenDoor, "CLIENT_RequestOpenDoor" }, // 1997927561
 				{ &Z_Construct_UFunction_AFIT2097_A2Character_CLIENT_SpawnExplosion, "CLIENT_SpawnExplosion" }, // 685130675
 				{ &Z_Construct_UFunction_AFIT2097_A2Character_SERVER_SpawnExplosion, "SERVER_SpawnExplosion" }, // 1700971722
 			};
@@ -97,14 +156,6 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
 			};
 #endif
-#if WITH_METADATA
-			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoleText_MetaData[] = {
-				{ "Category", "VFX" },
-				{ "EditInline", "true" },
-				{ "ModuleRelativePath", "FIT2097_A2Character.h" },
-			};
-#endif
-			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_RoleText = { UE4CodeGen_Private::EPropertyClass::Object, "RoleText", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000080009, 1, nullptr, STRUCT_OFFSET(AFIT2097_A2Character, RoleText), Z_Construct_UClass_UTextRenderComponent_NoRegister, METADATA_PARAMS(NewProp_RoleText_MetaData, ARRAY_COUNT(NewProp_RoleText_MetaData)) };
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ExplosionEffect_MetaData[] = {
 				{ "Category", "VFX" },
@@ -150,7 +201,6 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 #endif
 			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CameraBoom = { UE4CodeGen_Private::EPropertyClass::Object, "CameraBoom", RF_Public|RF_Transient|RF_MarkAsNative, 0x00400000000a001d, 1, nullptr, STRUCT_OFFSET(AFIT2097_A2Character, CameraBoom), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(NewProp_CameraBoom_MetaData, ARRAY_COUNT(NewProp_CameraBoom_MetaData)) };
 			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
-				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_RoleText,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_ExplosionEffect,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BaseLookUpRate,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BaseTurnRate,
@@ -175,7 +225,7 @@ void EmptyLinkFunctionForGeneratedCodeFIT2097_A2Character() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AFIT2097_A2Character, 4113287256);
+	IMPLEMENT_CLASS(AFIT2097_A2Character, 333434785);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AFIT2097_A2Character(Z_Construct_UClass_AFIT2097_A2Character, &AFIT2097_A2Character::StaticClass, TEXT("/Script/FIT2097_A2"), TEXT("AFIT2097_A2Character"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AFIT2097_A2Character);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

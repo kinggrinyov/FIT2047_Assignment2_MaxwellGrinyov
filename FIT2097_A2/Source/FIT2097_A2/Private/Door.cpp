@@ -2,8 +2,6 @@
 
 #include "Door.h"
 #include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
-#include "FIT2097_A2GameMode.h"
-#include "Engine.h"
 
 ADoor::ADoor()
 	: AInteractableActor(),
@@ -29,7 +27,10 @@ void ADoor::Tick(float DeltaTime)
 
 void ADoor::OpenDoor()
 {
-	m_targetRotation = FVector(GetActorRotation().Euler().X, 90, GetActorRotation().Euler().Z);
+	if (Role == ROLE_Authority)
+	{
+		m_targetRotation = FVector(GetActorRotation().Euler().X, 90, GetActorRotation().Euler().Z);
+	}
 }
 
 void ADoor::UpdateDoor(float DeltaTime)
@@ -43,25 +44,5 @@ void ADoor::UpdateDoor(float DeltaTime)
 
 void ADoor::Interact()
 {
-	if (GetWorld())
-	{
-		if (GetWorld()->GetAuthGameMode())
-		{
-			AFIT2097_A2GameMode* gameMode = Cast<AFIT2097_A2GameMode>(GetWorld()->GetAuthGameMode());
-			if (gameMode)
-			{
-				if (gameMode->DoorsUnlocked[DoorID])
-				{
-					OpenDoor();
-				}
-				else
-				{
-					if (GEngine)
-					{
-						GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, "Can't open door, Not Unlocked!");
-					}
-				}
-			}
-		}
-	}
+	OpenDoor();
 }

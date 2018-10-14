@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Engine.h"
+#include "Door.h"
+#include "InteractableKey.h"
 #include "FIT2097_A2Character.generated.h"
 
 UCLASS(config=Game)
@@ -30,6 +32,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	void BeginPlay() override;
 	void Tick(float DeltaTime);
 
 	bool ShouldTickIfViewportsOnly() const
@@ -47,14 +50,21 @@ public:
 	UFUNCTION(Server, Reliable, WithValidation)
 		void CLIENT_SpawnExplosion();
 
-	UPROPERTY(EditAnywhere, Category = "VFX")
-		UTextRenderComponent* RoleText;
-
+	//Role Text
+	UTextRenderComponent* RoleText;
 	void SetupDisplayRole();
+	void UpdateDisplayRole();
 
-	void BeginPlay() override;
-
+	//New methods
 	void Jump();
+	void HandleInteractable(AInteractableActor* interactable);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+		void CLIENT_RequestOpenDoor(ADoor* doorToOpen);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+		void CLIENT_PickupKey(AInteractableKey* keyToPickup);
+
 
 	//Trace Code
 	bool Trace(
@@ -66,7 +76,6 @@ public:
 		ECollisionChannel CollisionChannel,
 		bool ReturnPhysMat
 	);
-
 	void CallMyTrace();
 	void ProcessTraceHit(FHitResult& HitOut);
 

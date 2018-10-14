@@ -1,97 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <None Include="..\..\FIT2097_A2.uproject" />
-    <Filter Include="Source">
-      <UniqueIdentifier>{D7EFFBC1-97E6-4C26-8C89-C08ED11058C1}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\FIT2097_A2.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <None Include="..\..\Source\FIT2097_A2Editor.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <Filter Include="Config">
-      <UniqueIdentifier>{D77AA5C5-9507-40C8-8F50-1D891B9FBECE}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Config\DefaultEditor.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEngine.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultGame.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultInput.ini">
-      <Filter>Config</Filter>
-    </None>
-    <Filter Include="Source\FIT2097_A2">
-      <UniqueIdentifier>{2EAE097F-52EF-41A6-BCC0-A6445B53B16F}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\FIT2097_A2\FIT2097_A2.Build.cs">
-      <Filter>Source\FIT2097_A2</Filter>
-    </None>
-    <ClCompile Include="..\..\Source\FIT2097_A2\FIT2097_A2.cpp">
-      <Filter>Source\FIT2097_A2</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\FIT2097_A2\FIT2097_A2.h">
-      <Filter>Source\FIT2097_A2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\FIT2097_A2\FIT2097_A2Character.h">
-      <Filter>Source\FIT2097_A2</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\FIT2097_A2\FIT2097_A2GameMode.cpp">
-      <Filter>Source\FIT2097_A2</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\FIT2097_A2\FIT2097_A2GameMode.h">
-      <Filter>Source\FIT2097_A2</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\FIT2097_A2\FIT2097_A2Character.cpp">
-      <Filter>Source\FIT2097_A2</Filter>
-    </ClCompile>
-    <Filter Include="Source\FIT2097_A2\Public">
-      <UniqueIdentifier>{B388CA26-F3EE-4BF6-8AF4-67C1D87BE21D}</UniqueIdentifier>
-    </Filter>
-    <ClInclude Include="..\..\Source\FIT2097_A2\Public\MainPlayerController.h">
-      <Filter>Source\FIT2097_A2\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\FIT2097_A2\Public\StaticReplicatingActor.h">
-      <Filter>Source\FIT2097_A2\Public</Filter>
-    </ClInclude>
-    <Filter Include="Source\FIT2097_A2\Private">
-      <UniqueIdentifier>{028D8DAD-ED18-44F7-8AB2-ABA5983D68CD}</UniqueIdentifier>
-    </Filter>
-    <ClCompile Include="..\..\Source\FIT2097_A2\Private\MainPlayerController.cpp">
-      <Filter>Source\FIT2097_A2\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\FIT2097_A2\Private\StaticReplicatingActor.cpp">
-      <Filter>Source\FIT2097_A2\Private</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\FIT2097_A2\Public\InteractableActor.h">
-      <Filter>Source\FIT2097_A2\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\FIT2097_A2\Public\InteractableKey.h">
-      <Filter>Source\FIT2097_A2\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\FIT2097_A2\Public\Door.h">
-      <Filter>Source\FIT2097_A2\Public</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Source\FIT2097_A2\Private\InteractableActor.cpp">
-      <Filter>Source\FIT2097_A2\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\FIT2097_A2\Private\InteractableKey.cpp">
-      <Filter>Source\FIT2097_A2\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\FIT2097_A2\Private\Door.cpp">
-      <Filter>Source\FIT2097_A2\Private</Filter>
-    </ClCompile>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\FIT2097_A2.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{24B0E67E-B4EF-4D9D-995A-1BD72DC5D079}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\FIT2097_A2.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\FIT2097_A2Editor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{539FC9E7-A41F-478D-B424-6660F2A635E1}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\FIT2097_A2">
+			<UniqueIdentifier>{69D7FF0B-97D4-4F38-9532-D3A909D80103}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\FIT2097_A2\FIT2097_A2.Build.cs">
+			<Filter>Source\FIT2097_A2</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\FIT2097_A2\FIT2097_A2.cpp">
+			<Filter>Source\FIT2097_A2</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\FIT2097_A2\FIT2097_A2.h">
+			<Filter>Source\FIT2097_A2</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\FIT2097_A2\FIT2097_A2Character.h">
+			<Filter>Source\FIT2097_A2</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\FIT2097_A2\FIT2097_A2GameMode.cpp">
+			<Filter>Source\FIT2097_A2</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\FIT2097_A2\FIT2097_A2GameMode.h">
+			<Filter>Source\FIT2097_A2</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\FIT2097_A2\FIT2097_A2Character.cpp">
+			<Filter>Source\FIT2097_A2</Filter>
+		</ClCompile >
+		<Filter Include="Source\FIT2097_A2\Public">
+			<UniqueIdentifier>{88E31BBF-F2D8-49A0-856F-8ECF3F151A50}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\FIT2097_A2\Public\Door.h">
+			<Filter>Source\FIT2097_A2\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\FIT2097_A2\Public\MainPlayerController.h">
+			<Filter>Source\FIT2097_A2\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\FIT2097_A2\Public\InteractableActor.h">
+			<Filter>Source\FIT2097_A2\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\FIT2097_A2\Public\InteractableKey.h">
+			<Filter>Source\FIT2097_A2\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\FIT2097_A2\Public\StaticReplicatingActor.h">
+			<Filter>Source\FIT2097_A2\Public</Filter>
+		</ClInclude >
+		<Filter Include="Source\FIT2097_A2\Private">
+			<UniqueIdentifier>{918FEE29-D729-47B7-BD6A-9A17AF1F1F95}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\FIT2097_A2\Private\InteractableActor.cpp">
+			<Filter>Source\FIT2097_A2\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\FIT2097_A2\Private\MainPlayerController.cpp">
+			<Filter>Source\FIT2097_A2\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\FIT2097_A2\Private\InteractableKey.cpp">
+			<Filter>Source\FIT2097_A2\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\FIT2097_A2\Private\Door.cpp">
+			<Filter>Source\FIT2097_A2\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\FIT2097_A2\Private\StaticReplicatingActor.cpp">
+			<Filter>Source\FIT2097_A2\Private</Filter>
+		</ClCompile >
+	</ItemGroup>
 </Project>

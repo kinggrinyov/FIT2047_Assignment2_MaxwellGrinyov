@@ -12,6 +12,7 @@
 #include <Runtime/Engine/Classes/Engine/Engine.h>
 #include "Kismet/GameplayStatics.h"
 #include "InteractableActor.h"
+#include "FIT2097_A2GameMode.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AFIT2097_A2Character
@@ -112,6 +113,63 @@ void AFIT2097_A2Character::Jump()
 	ACharacter::Jump();
 
 	CLIENT_SpawnExplosion();
+}
+
+void AFIT2097_A2Character::HandleInteractable(AInteractableActor * interactable)
+{
+	//attempt to cast interactable as specific objects
+	if (Cast<ADoor>(interactable))
+	{
+		CLIENT_RequestOpenDoor(Cast<ADoor>(interactable));
+	}
+	else if (Cast<AInteractableKey>(interactable))
+	{
+		CLIENT_PickupKey(Cast<AInteractableKey>(interactable));
+	}
+}
+
+void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOpen)
+{
+	if (GetWorld())
+	{
+		if (GetWorld()->GetAuthGameMode()) //This would only work on the server (Since gamemode is server only)
+		{
+			AFIT2097_A2GameMode* gameMode = Cast<AFIT2097_A2GameMode>(GetWorld()->GetAuthGameMode());
+			if (gameMode)
+			{
+				if (doorToOpen)
+				{
+					if (gameMode->DoorsUnlocked[doorToOpen->DoorID])
+					{
+						doorToOpen->Interact();
+					}
+					else
+					{
+						if (GEngine)
+						{
+							GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, "Can't open door, Not Unlocked!");
+						}
+					}
+				}
+
+			}
+		}
+	}
+}
+
+bool AFIT2097_A2Character::CLIENT_RequestOpenDoor_Validate(ADoor * doorToOpen)
+{
+	return (doorToOpen != nullptr);
+}
+
+void AFIT2097_A2Character::CLIENT_PickupKey_Implementation(AInteractableKey* keyToPickup)
+{
+	keyToPickup->Interact();
+}
+
+bool AFIT2097_A2Character::CLIENT_PickupKey_Validate(AInteractableKey* keyToPickup)
+{
+	return (keyToPickup != nullptr);
 }
 
 bool AFIT2097_A2Character::Trace(UWorld * World, TArray<AActor*>& ActorsToIgnore, const FVector & Start, const FVector & End, FHitResult & HitOut, ECollisionChannel CollisionChannel, bool ReturnPhysMat)
@@ -224,12 +282,10 @@ void AFIT2097_A2Character::ProcessTraceHit(FHitResult & HitOut)
 		}
 
 		AInteractableActor* interactable = Cast<AInteractableActor>(actorHit);
-
 		if (interactable)
 		{
-			interactable->Interact();
+			HandleInteractable(interactable);
 		}
-
 	}
 }
 
@@ -238,6 +294,7 @@ void AFIT2097_A2Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	UpdateDisplayRole();
 
 	//UGameplayStatics::GetPlayerController(GetWorld(), 0);
 }
@@ -293,6 +350,13 @@ void AFIT2097_A2Character::SetupDisplayRole()
 		RoleText->SetText(val);
 	}
 }
+
+void AFIT2097_A2Character::UpdateDisplayRole()
+{
+	RoleText->SetWorldRotation(FRotator::MakeFromEuler(FVector::ZeroVector));
+}
+
+
 
 void AFIT2097_A2Character::TurnAtRate(float Rate)
 {

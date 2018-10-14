@@ -19,15 +19,15 @@ public:
 	
 	void BeginPlay() override;
 	void Tick(float DeltaTime);
-	
-	void OpenDoor();
-	void UpdateDoor(float DeltaTime);
+
 	void Interact();
 
 	//Unique Identifier to the door, Used to link up the doors to unlock
 	int DoorID; 
 
 private:
+	void OpenDoor();
+	void UpdateDoor(float DeltaTime);
 	FVector m_targetRotation;
 
 };

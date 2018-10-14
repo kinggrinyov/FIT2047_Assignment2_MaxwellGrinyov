@@ -77,3 +77,4 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 FIT2097_A2/Saved/*
 FIT2097_A2/Intermediate/*
+*.log
