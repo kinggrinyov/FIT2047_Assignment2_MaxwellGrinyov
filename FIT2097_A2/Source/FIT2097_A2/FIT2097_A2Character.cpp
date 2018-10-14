@@ -13,7 +13,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "InteractableActor.h"
 #include "FIT2097_A2GameMode.h"
-//#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AFIT2097_A2Character
@@ -65,15 +64,6 @@ AFIT2097_A2Character::AFIT2097_A2Character()
 	//	}
 	//}
 
-	//static ConstructorHelpers::FClassFinder<UUserWidget> bpclass(TEXT("/Game/Widgets/Widget_HUD"));
-	//if (bpclass.Succeeded())
-	//{
-	//	if (bpclass.Class != nullptr)
-	//	{
-	//		HUDWidget = CreateWidget<UUserWidget>(GetWorld(), UUserWidget::StaticClass());
-	//	}
-	//}
-
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
@@ -115,11 +105,6 @@ void AFIT2097_A2Character::BeginPlay()
 			RoleText = Cast<UTextRenderComponent>(comp);
 			SetupDisplayRole();
 		}
-	}
-
-	if (HUDWidget)
-	{
-		HUDWidget->AddToViewport();
 	}
 }
 
@@ -180,7 +165,6 @@ bool AFIT2097_A2Character::CLIENT_RequestOpenDoor_Validate(ADoor * doorToOpen)
 void AFIT2097_A2Character::CLIENT_PickupKey_Implementation(AInteractableKey* keyToPickup)
 {
 	keyToPickup->Interact();
-	keyToPickup->Destroy();
 }
 
 bool AFIT2097_A2Character::CLIENT_PickupKey_Validate(AInteractableKey* keyToPickup)
