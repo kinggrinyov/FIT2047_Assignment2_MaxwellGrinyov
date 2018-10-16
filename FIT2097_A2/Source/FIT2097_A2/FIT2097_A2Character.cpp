@@ -139,7 +139,7 @@ void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOp
 			{
 				if (doorToOpen)
 				{
-					if (gameMode->DoorsUnlocked[doorToOpen->DoorID])
+					if (gameMode->IsDoorUnlocked(doorToOpen->DoorID))
 					{
 						doorToOpen->Interact();
 					}

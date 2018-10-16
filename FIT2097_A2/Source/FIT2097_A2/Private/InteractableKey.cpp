@@ -14,7 +14,7 @@ void AInteractableKey::Interact()
 			if (gameMode)
 			{
 				//Unlocks the first door
-				gameMode->DoorsUnlocked[0] = true;
+				gameMode->UnlockDoor(0);
 
 				if (GEngine)
 				{

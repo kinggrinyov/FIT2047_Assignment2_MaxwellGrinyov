@@ -15,6 +15,16 @@ class AFIT2097_A2GameMode : public AGameModeBase
 public:
 	AFIT2097_A2GameMode();
 
+	UFUNCTION(BlueprintPure)
+		bool IsDoorUnlocked(int index);
+
+	UFUNCTION(BlueprintCallable)
+		void UnlockDoor(int index);
+
+	UFUNCTION(BlueprintCallable)
+		void LockDoor(int index);
+
+private:
 	//This stores the doors that are unlocked
 	bool DoorsUnlocked[4];
 };
