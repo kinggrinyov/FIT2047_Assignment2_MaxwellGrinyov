@@ -17,12 +17,12 @@ class FIT2097_A2_API AMainHUD : public AHUD
 public:
 	AMainHUD();
 
+	//OVERRIDES
 	//Primary draw call for the HUD
 	virtual void DrawHUD() override;
-
 	virtual void BeginPlay() override;
-
 	void Tick(float DeltaTime) override;
+
 	
 private:
 	UPROPERTY(EditAnywhere, Category = "Health")

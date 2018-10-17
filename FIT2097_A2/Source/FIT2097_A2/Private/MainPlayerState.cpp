@@ -1,11 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "MainPlayerController.h"
+#include "MainPlayerState.h"
 #include "Engine.h"
 
 
-AMainPlayerController::AMainPlayerController()
-	: Super()
+void AMainPlayerState::BeginPlay()
 {
+	Super::BeginPlay();
 
+	
 }
+

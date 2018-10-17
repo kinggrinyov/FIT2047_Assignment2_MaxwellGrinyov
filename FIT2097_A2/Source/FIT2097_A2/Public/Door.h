@@ -23,7 +23,8 @@ public:
 	void Interact();
 
 	//Unique Identifier to the door, Used to link up the doors to unlock
-	int DoorID; 
+	UPROPERTY(EditAnywhere, Category = "Identifiers")
+		int DoorID; 
 
 private:
 	void OpenDoor();

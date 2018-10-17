@@ -14,12 +14,13 @@ void AInteractableKey::Interact()
 			if (gameMode)
 			{
 				//Unlocks the first door
-				gameMode->UnlockDoor(0);
+				//gameMode->UnlockDoor(0);
+				Destroy();
 
-				if (GEngine)
-				{
-					GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, "First Door Unlocked!");
-				}
+				//if (GEngine)
+				//{
+				//	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, "First Door Unlocked!");
+				//}
 			}
 		}
 	}

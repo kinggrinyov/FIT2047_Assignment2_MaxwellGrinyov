@@ -54,13 +54,14 @@ public:
 	UTextRenderComponent* RoleText;
 	void SetupDisplayRole();
 	void UpdateDisplayRole();
+	FString GetRole();
 
 	//New methods
 	void Jump();
 	void HandleInteractable(AInteractableActor* interactable);
 
 	UFUNCTION(Server, Reliable, WithValidation)
-		void CLIENT_RequestOpenDoor(ADoor* doorToOpen);
+		void CLIENT_RequestOpenDoor(ADoor* doorToOpen, const bool haskey);
 
 	UFUNCTION(Server, Reliable, WithValidation)
 		void CLIENT_PickupKey(AInteractableKey* keyToPickup);
@@ -78,6 +79,14 @@ public:
 	);
 	void CallMyTrace();
 	void ProcessTraceHit(FHitResult& HitOut);
+
+	//Inventory Checks
+	bool HasKey() { return m_hasKey; }
+	
+
+private:
+	//Inventory?
+	bool m_hasKey;
 
 protected:
 

@@ -120,15 +120,16 @@ void AFIT2097_A2Character::HandleInteractable(AInteractableActor * interactable)
 	//attempt to cast interactable as specific objects
 	if (Cast<ADoor>(interactable))
 	{
-		CLIENT_RequestOpenDoor(Cast<ADoor>(interactable));
+		CLIENT_RequestOpenDoor(Cast<ADoor>(interactable), HasKey());
 	}
 	else if (Cast<AInteractableKey>(interactable))
 	{
 		CLIENT_PickupKey(Cast<AInteractableKey>(interactable));
+		m_hasKey = true;
 	}
 }
 
-void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOpen)
+void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOpen, const bool haskey)
 {
 	if (GetWorld())
 	{
@@ -139,7 +140,8 @@ void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOp
 			{
 				if (doorToOpen)
 				{
-					if (gameMode->IsDoorUnlocked(doorToOpen->DoorID))
+					//if (gameMode->IsDoorUnlocked(doorToOpen->DoorID))
+					if(haskey)
 					{
 						doorToOpen->Interact();
 					}
@@ -157,7 +159,7 @@ void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOp
 	}
 }
 
-bool AFIT2097_A2Character::CLIENT_RequestOpenDoor_Validate(ADoor * doorToOpen)
+bool AFIT2097_A2Character::CLIENT_RequestOpenDoor_Validate(ADoor * doorToOpen, const bool haskey)
 {
 	return (doorToOpen != nullptr);
 }
@@ -357,6 +359,22 @@ void AFIT2097_A2Character::UpdateDisplayRole()
 	{
 		RoleText->SetWorldRotation(FRotator::MakeFromEuler(FVector::ZeroVector));
 	}	
+}
+
+FString AFIT2097_A2Character::GetRole()
+{
+	FString retVal = "MISSING ROLE";
+
+	if (Role == ROLE_Authority)
+	{
+		retVal = "SERVER";
+	}
+	else
+	{
+		retVal = "CLIENT";
+	}
+
+	return retVal;
 }
 
 

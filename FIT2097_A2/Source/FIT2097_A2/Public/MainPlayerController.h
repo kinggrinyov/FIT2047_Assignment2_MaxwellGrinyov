@@ -14,5 +14,6 @@ class FIT2097_A2_API AMainPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-	
+public:
+		AMainPlayerController();
 };
