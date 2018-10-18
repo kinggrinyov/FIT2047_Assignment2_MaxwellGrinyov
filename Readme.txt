@@ -9,3 +9,4 @@ Extra Functionality:
 - entire project was rewritten into c++
 
 Created by Maxwell Grinyov
+- Accidentaly named repositry FIT2047 instead of FIT2097
