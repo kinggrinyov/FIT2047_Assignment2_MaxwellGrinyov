@@ -8,6 +8,8 @@ Extra Functionality:
 - Key and door in multiplayer
 - entire project was rewritten into c++
 
+GITHUB LINK : https://github.com/kinggrinyov/FIT2047_Assignment2_MaxwellGrinyov
+
 Created by Maxwell Grinyov
 - Accidentaly named repositry FIT2047 instead of FIT2097
 - Did not Specify replication since no property was directly replicated besides the premade AStatictReplicatingActor's properties.
