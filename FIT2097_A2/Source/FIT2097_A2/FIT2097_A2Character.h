@@ -7,6 +7,7 @@
 #include "Engine.h"
 #include "Door.h"
 #include "InteractableKey.h"
+#include "InteractableFuse.h"
 #include "FIT2097_A2Character.generated.h"
 
 UCLASS(config=Game)
@@ -45,10 +46,16 @@ public:
 		UParticleSystem* ExplosionEffect;
 
 	UFUNCTION(NetMulticast, Reliable)
-		void SERVER_SpawnExplosion();
+		void SERVER_SpawnExplosion(FVector explodeLocation);
 
 	UFUNCTION(Server, Reliable, WithValidation)
-		void CLIENT_SpawnExplosion();
+		void CLIENT_SpawnExplosion(FVector explodeLocation);
+
+	UFUNCTION(NetMulticast, Reliable)
+		void SERVER_SpawnExplosionAura();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+		void CLIENT_SpawnExplosionAura();
 
 	//Role Text
 	UTextRenderComponent* RoleText;
@@ -58,14 +65,26 @@ public:
 
 	//New methods
 	void Jump();
+	void OnJumped_Implementation() override;
 	void HandleInteractable(AInteractableActor* interactable);
 
 	UFUNCTION(Server, Reliable, WithValidation)
-		void CLIENT_RequestOpenDoor(ADoor* doorToOpen, const bool haskey);
+		void CLIENT_RequestOpenDoor(ADoor* doorToOpen, const bool haskey, const bool hasfuse);
 
 	UFUNCTION(Server, Reliable, WithValidation)
 		void CLIENT_PickupKey(AInteractableKey* keyToPickup);
 
+	UFUNCTION(Server, Reliable, WithValidation)
+		void CLIENT_PickupFuse(AInteractableFuse* fuseToPickup);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+		void CLIENT_ActivateButton(AInteractableButton* button);
+
+	UPROPERTY(EditAnywhere, Category = "SFX")
+		USoundCue* ExplosionSFX;
+
+	UPROPERTY(EditAnywhere, Category = "VFX")
+		UParticleSystem* ExplosionModeAura;
 
 	//Trace Code
 	bool Trace(
@@ -82,11 +101,18 @@ public:
 
 	//Inventory Checks
 	bool HasKey() { return m_hasKey; }
-	
+	bool HasFuse() { return m_hasFuse; }
+
+	bool HasExplosionPower;
+	void ActivateExplosionPower();
+
+	float CurrentHealth;
+	FString CurrentMessage;
 
 private:
 	//Inventory?
 	bool m_hasKey;
+	bool m_hasFuse;
 
 protected:
 

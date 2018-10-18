@@ -40,8 +40,8 @@ void ADoor::UpdateDoor(float DeltaTime)
 		FVector lerpVec = FMath::Lerp(GetActorRotation().Euler(), m_targetRotation, 0.5f * DeltaTime);
 		SetActorRelativeRotation(FRotator::MakeFromEuler(lerpVec));
 
-		//Snap door to fixed rotation once it gets close enough to target rotation
-		if (FVector::DistSquared(GetActorRotation().Euler(), m_targetRotation) < 1.0f)
+		//Snap door to fixed rotation once it gets close enough to target
+		if (FVector::DistSquared(GetActorRotation().Euler(), m_targetRotation) < 5.0f)
 		{
 			SetActorRelativeRotation(FRotator::MakeFromEuler(m_targetRotation));
 		}

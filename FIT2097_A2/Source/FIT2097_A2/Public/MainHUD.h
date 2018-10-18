@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "FIT2097_A2Character.h"
 #include "MainHUD.generated.h"
 
 /**
@@ -30,4 +31,8 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Health")
 		class UUserWidget* CurrentWidget;
+
+	AFIT2097_A2Character* m_character;
+	float m_displayTimer;
+	const float m_TIME_TO_DISPLAY = 5.0f;
 };

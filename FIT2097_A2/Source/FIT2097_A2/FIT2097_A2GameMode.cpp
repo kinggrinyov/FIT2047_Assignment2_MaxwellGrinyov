@@ -7,6 +7,7 @@
 #include "MainPlayerState.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "FIT2097_A2Character.h"
 
 const int MAX_PLAYERS = 2;
 
@@ -26,34 +27,15 @@ AFIT2097_A2GameMode::AFIT2097_A2GameMode() : Super()
 
 	//Initiase variables
 	m_playersSpawned = 0;
-	//for (bool& du : DoorsUnlocked)
-	//{
-	//	du = false;
-	//}
 }
-
-//bool AFIT2097_A2GameMode::IsDoorUnlocked(int index)
-//{
-//	return DoorsUnlocked[index];
-//}
-//
-//void AFIT2097_A2GameMode::UnlockDoor(int index)
-//{
-//	DoorsUnlocked[index] = true;
-//}
-//
-//void AFIT2097_A2GameMode::LockDoor(int index)
-//{
-//	DoorsUnlocked[index] = false;
-//}
 
 void AFIT2097_A2GameMode::PostLogin(APlayerController* NewPlayer)
 {
 	Super::PostLogin(NewPlayer);
 
-	if (GEngine)
+	if (Cast<AFIT2097_A2Character>(NewPlayer->GetCharacter()))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Emerald, "Welcome Player " + FString::FromInt(m_playersSpawned) );
+		Cast<AFIT2097_A2Character>(NewPlayer->GetCharacter())->CurrentMessage = "Welcome Player " + FString::FromInt(m_playersSpawned);
 	}
 
 	m_playersSpawned++;
@@ -67,22 +49,9 @@ AActor* AFIT2097_A2GameMode::ChoosePlayerStart_Implementation(AController* Playe
 		return nullptr;
 	}
 
-
-	//Super::ChoosePlayerStart_Implementation(Player);
 	TArray<AActor*> playerstarts;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APlayerStart::StaticClass(), playerstarts);
 
-	//for (AActor* actor : playerstarts)
-	//{
-	//	APlayerStart* ps = Cast<APlayerStart>(actor);
-	//	if (ps)
-	//	{
-	//		if (ps->PlayerStartTag == "Player1Start")
-	//		{
-	//			retVal = ps;
-	//		}
-	//	}
-	//}
 	return playerstarts[m_playersSpawned];
 }
 

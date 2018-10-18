@@ -13,6 +13,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "InteractableActor.h"
 #include "FIT2097_A2GameMode.h"
+#include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
+#include "InteractableButton.h"
+
 
 //////////////////////////////////////////////////////////////////////////
 // AFIT2097_A2Character
@@ -51,18 +54,8 @@ AFIT2097_A2Character::AFIT2097_A2Character()
 	SetActorTickEnabled(true);
 	PrimaryActorTick.bCanEverTick = true;
 
-	//static ConstructorHelpers::FObjectFinder<UParticleSystem> ExplosionBPClass(TEXT("/Game/ExtraContent/StarterContent/Particles/P_Explosion"));
-	//if (ExplosionBPClass.Object != nullptr)
-	//{
-	//	ExplosionEffect = ExplosionBPClass.Object;
-	//}
-	//else
-	//{
-	//	if (GEngine)
-	//	{
-	//		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, "Invalid Explosion Asset Path");
-	//	}
-	//}
+	HasExplosionPower = false;	
+	CurrentMessage = "";
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
@@ -106,13 +99,23 @@ void AFIT2097_A2Character::BeginPlay()
 			SetupDisplayRole();
 		}
 	}
+
+	CurrentHealth = 100.0f;
 }
 
 void AFIT2097_A2Character::Jump()
 {
 	ACharacter::Jump();
+}
 
-	CLIENT_SpawnExplosion();
+void AFIT2097_A2Character::OnJumped_Implementation()
+{
+	ACharacter::OnJumped_Implementation();
+
+	if (HasExplosionPower)
+	{
+		CLIENT_SpawnExplosion(GetActorLocation() + FVector(0, 0, -100));
+	}
 }
 
 void AFIT2097_A2Character::HandleInteractable(AInteractableActor * interactable)
@@ -120,16 +123,38 @@ void AFIT2097_A2Character::HandleInteractable(AInteractableActor * interactable)
 	//attempt to cast interactable as specific objects
 	if (Cast<ADoor>(interactable))
 	{
-		CLIENT_RequestOpenDoor(Cast<ADoor>(interactable), HasKey());
+		CLIENT_RequestOpenDoor(Cast<ADoor>(interactable), HasKey(), HasFuse());
+
+		if (HasKey() || HasFuse())
+		{
+			CurrentMessage = "Door Opened!";
+		}
+		else
+		{
+			CurrentMessage = "Can't open door, Not Unlocked!";
+		}
 	}
 	else if (Cast<AInteractableKey>(interactable))
 	{
 		CLIENT_PickupKey(Cast<AInteractableKey>(interactable));
 		m_hasKey = true;
+
+		CurrentMessage = "Key Acquired!";
+	}
+	else if (Cast<AInteractableFuse>(interactable))
+	{
+		CLIENT_PickupFuse(Cast<AInteractableFuse>(interactable));
+		m_hasFuse = true;
+
+		CurrentMessage = "Absorbing Fuse!";
+	}
+	else if (Cast<AInteractableButton>(interactable))
+	{
+		CLIENT_ActivateButton(Cast<AInteractableButton>(interactable));
 	}
 }
 
-void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOpen, const bool haskey)
+void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOpen, const bool haskey, const bool hasfuse)
 {
 	if (GetWorld())
 	{
@@ -140,17 +165,25 @@ void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOp
 			{
 				if (doorToOpen)
 				{
-					//if (gameMode->IsDoorUnlocked(doorToOpen->DoorID))
-					if(haskey)
+					bool canOpenDoor = false;
+					switch (doorToOpen->DoorID)
+					{
+						case 0:
+						{
+							canOpenDoor = haskey;
+							break;
+						}
+
+						case 1:
+						{
+							canOpenDoor = hasfuse;
+							break;
+						}
+					}
+
+					if(canOpenDoor)
 					{
 						doorToOpen->Interact();
-					}
-					else
-					{
-						if (GEngine)
-						{
-							GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, "Can't open door, Not Unlocked!");
-						}
 					}
 				}
 
@@ -159,7 +192,7 @@ void AFIT2097_A2Character::CLIENT_RequestOpenDoor_Implementation(ADoor* doorToOp
 	}
 }
 
-bool AFIT2097_A2Character::CLIENT_RequestOpenDoor_Validate(ADoor * doorToOpen, const bool haskey)
+bool AFIT2097_A2Character::CLIENT_RequestOpenDoor_Validate(ADoor * doorToOpen, const bool haskey, const bool hasfuse)
 {
 	return (doorToOpen != nullptr);
 }
@@ -172,6 +205,27 @@ void AFIT2097_A2Character::CLIENT_PickupKey_Implementation(AInteractableKey* key
 bool AFIT2097_A2Character::CLIENT_PickupKey_Validate(AInteractableKey* keyToPickup)
 {
 	return (keyToPickup != nullptr);
+}
+
+void AFIT2097_A2Character::CLIENT_PickupFuse_Implementation(AInteractableFuse* fuseToPickup)
+{
+	fuseToPickup->SetOwner(this);
+	fuseToPickup->Interact();
+}
+
+bool AFIT2097_A2Character::CLIENT_PickupFuse_Validate(AInteractableFuse* fuseToPickup)
+{
+	return fuseToPickup != nullptr;
+}
+
+void AFIT2097_A2Character::CLIENT_ActivateButton_Implementation(AInteractableButton* button)
+{
+	button->Interact();
+}
+
+bool AFIT2097_A2Character::CLIENT_ActivateButton_Validate(AInteractableButton* button)
+{
+	return button != nullptr;
 }
 
 bool AFIT2097_A2Character::Trace(UWorld * World, TArray<AActor*>& ActorsToIgnore, const FVector & Start, const FVector & End, FHitResult & HitOut, ECollisionChannel CollisionChannel, bool ReturnPhysMat)
@@ -201,7 +255,6 @@ bool AFIT2097_A2Character::Trace(UWorld * World, TArray<AActor*>& ActorsToIgnore
 	const FName TraceTag("MyTraceTag");
 	World->DebugDrawTraceTag = TraceTag;
 	TraceParams.TraceTag = TraceTag;
-
 
 	// Force clear the HitData which contains our results
 	HitOut = FHitResult(ForceInit);
@@ -261,13 +314,6 @@ void AFIT2097_A2Character::CallMyTrace()
 	{
 		ProcessTraceHit(HitData);
 	}
-	else
-	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, "TRACE MISS");
-		}
-	}
 
 }
 
@@ -278,17 +324,20 @@ void AFIT2097_A2Character::ProcessTraceHit(FHitResult & HitOut)
 	// Process our HitData
 	if (actorHit)
 	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, "TRACE HIT: " + actorHit->GetName());
-		}
-
 		AInteractableActor* interactable = Cast<AInteractableActor>(actorHit);
 		if (interactable)
 		{
 			HandleInteractable(interactable);
 		}
 	}
+}
+
+void AFIT2097_A2Character::ActivateExplosionPower()
+{
+	HasExplosionPower = true;
+	JumpMaxCount = 2;
+	CLIENT_SpawnExplosionAura();
+	CurrentMessage = "You have gained the power of the fuse, Double Jump Activated!";
 }
 
 
@@ -298,22 +347,47 @@ void AFIT2097_A2Character::Tick(float DeltaTime)
 
 	UpdateDisplayRole();
 
-	//UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	//Reduce health over time
+	if (CurrentHealth > 0)
+	{
+		CurrentHealth -= DeltaTime;
+	}
 }
 
-void AFIT2097_A2Character::SERVER_SpawnExplosion_Implementation()
+void AFIT2097_A2Character::SERVER_SpawnExplosion_Implementation(FVector explodeLocation)
 {
 	//Spawn Explosion Effect
 	if (ExplosionEffect != nullptr)
 	{
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionEffect, GetActorLocation() + FVector(0, 0, -100), GetActorRotation(), FVector::OneVector, false);
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionEffect, explodeLocation, GetActorRotation(), FVector::OneVector, false);
+		if (ExplosionSFX)
+		{
+			UGameplayStatics::PlaySound2D(GetWorld(), ExplosionSFX);
+		}
 	}
 }
-void AFIT2097_A2Character::CLIENT_SpawnExplosion_Implementation()
+void AFIT2097_A2Character::CLIENT_SpawnExplosion_Implementation(FVector explodeLocation)
 {
-	SERVER_SpawnExplosion();
+	SERVER_SpawnExplosion(explodeLocation);
 }
-bool AFIT2097_A2Character::CLIENT_SpawnExplosion_Validate()
+bool AFIT2097_A2Character::CLIENT_SpawnExplosion_Validate(FVector explodeLocation)
+{
+	return true;
+}
+
+void AFIT2097_A2Character::SERVER_SpawnExplosionAura_Implementation()
+{
+	//Spawn Explosion Effect
+	if (ExplosionModeAura != nullptr)
+	{
+		UGameplayStatics::SpawnEmitterAttached(ExplosionModeAura,GetRootComponent(), NAME_None, FVector::ZeroVector, GetActorRotation(), EAttachLocation::SnapToTarget);
+	}
+}
+void AFIT2097_A2Character::CLIENT_SpawnExplosionAura_Implementation()
+{
+	SERVER_SpawnExplosionAura();
+}
+bool AFIT2097_A2Character::CLIENT_SpawnExplosionAura_Validate()
 {
 	return true;
 }

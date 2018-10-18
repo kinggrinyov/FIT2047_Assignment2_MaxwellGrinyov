@@ -6,22 +6,5 @@
 
 void AInteractableKey::Interact()
 {
-	if (GetWorld())
-	{
-		if (GetWorld()->GetAuthGameMode())
-		{
-			AFIT2097_A2GameMode* gameMode = Cast<AFIT2097_A2GameMode>(GetWorld()->GetAuthGameMode());
-			if (gameMode)
-			{
-				//Unlocks the first door
-				//gameMode->UnlockDoor(0);
-				Destroy();
-
-				//if (GEngine)
-				//{
-				//	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, "First Door Unlocked!");
-				//}
-			}
-		}
-	}
+	Destroy();
 }
